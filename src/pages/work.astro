@@ -1,21 +1,119 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const projects = (
+  await getCollection("work", ({ data }) => !data.draft)
+).sort(
+  (a, b) =>
+    b.data.publishedAt.getTime() - a.data.publishedAt.getTime(),
+);
 ---
 
 <BaseLayout
   title="Work"
-  description="Selected design, development, and data science projects."
+  description="Selected projects across design, software development, and data."
 >
-  <section class="container py-20 sm:py-24">
-    <p class="font-code text-sm font-medium text-brand-600">Work</p>
+  <section
+    class="container"
+    style="padding-block: var(--section-padding-y);"
+  >
+    <header class="max-w-3xl">
+      <p class="font-code text-sm font-medium text-brand-600">
+        Work
+      </p>
 
-    <h1 class="mt-4 font-heading text-4xl font-semibold tracking-tight sm:text-5xl">
-      Selected projects and case studies.
-    </h1>
+      <h1
+        class="mt-5 font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-5xl lg:text-6xl"
+      >
+        Projects I have designed, built, and explored.
+      </h1>
 
-    <p class="mt-6 max-w-2xl text-lg leading-8 text-foreground-muted">
-      A collection of projects across design, software development, and data
-      science.
-    </p>
+      <p
+        class="mt-6 max-w-2xl text-lg leading-8 text-foreground-muted sm:text-xl"
+      >
+        A collection of work across visual design, software development,
+        and data.
+      </p>
+    </header>
+
+    {
+      projects.length > 0 ? (
+        <div class="mt-16 grid gap-5 md:grid-cols-2">
+          {projects.map((project) => (
+            <article class="group flex min-h-80 flex-col rounded-card border border-slate-200 bg-surface p-6 transition duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-[var(--shadow-card)] sm:p-8">
+              <div class="flex flex-wrap items-center gap-3 font-code text-sm">
+                <span class="font-medium text-brand-600">
+                  {project.data.category}
+                </span>
+
+                <span aria-hidden="true" class="text-slate-300">
+                  /
+                </span>
+
+                <time
+                  datetime={project.data.publishedAt.toISOString()}
+                  class="text-foreground-muted"
+                >
+                  {project.data.publishedAt.toLocaleDateString("en-US", {
+                    year: "numeric",
+                  })}
+                </time>
+              </div>
+
+              <div class="mt-auto pt-16">
+                <h2
+                  class="font-heading text-2xl font-semibold tracking-tight"
+                >
+                  <a
+                    href={`/work/${project.id}`}
+                    class="transition group-hover:text-brand-600"
+                  >
+                    {project.data.title}
+                  </a>
+                </h2>
+
+                <p class="mt-4 leading-7 text-foreground-muted">
+                  {project.data.description}
+                </p>
+
+                {
+                  project.data.technologies.length > 0 && (
+                    <ul class="mt-6 flex flex-wrap gap-2">
+                      {project.data.technologies.slice(0, 4).map((technology) => (
+                        <li class="rounded-full border border-slate-200 px-3 py-1 text-sm text-foreground-muted">
+                          {technology}
+                        </li>
+                      ))}
+                    </ul>
+                  )
+                }
+
+                <a
+                  href={`/work/${project.id}`}
+                  class="mt-8 inline-flex items-center gap-2 font-medium text-foreground transition group-hover:text-brand-600"
+                  aria-label={`View ${project.data.title}`}
+                >
+                  View project
+
+                  <span
+                    aria-hidden="true"
+                    class="transition-transform group-hover:translate-x-1"
+                  >
+                    →
+                  </span>
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <div class="mt-16 rounded-card border border-slate-200 p-8">
+          <p class="text-foreground-muted">
+            Projects will appear here soon.
+          </p>
+        </div>
+      )
+    }
   </section>
 </BaseLayout>
