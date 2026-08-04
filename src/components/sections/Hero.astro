@@ -1,39 +1,42 @@
+---
+import { hero } from "../../data/site";
+---
+
 <section class="container flex min-h-[calc(100vh-8rem)] items-center py-20">
   <div class="max-w-3xl">
     <p class="mb-5 font-code text-sm font-medium text-brand-600">
-      Fahrizal Yakin
+      {hero.greeting}
     </p>
 
     <h1
       class="font-heading text-5xl leading-tight font-semibold tracking-tight sm:text-6xl lg:text-7xl"
     >
-      Design.
-      <br />
-      Code.
-      <br />
-      Data.
+      {
+        hero.title.map((line) => (
+          <span class="block">{line}</span>
+        ))
+      }
     </h1>
 
     <p
       class="mt-8 max-w-2xl text-lg leading-8 text-foreground-muted sm:text-xl"
     >
-      I design digital experiences, build software, and explore data to create
-      useful things.
+      {hero.description}
     </p>
 
     <div class="mt-10 flex flex-wrap gap-3">
       <a
-        href="/work"
+        href={hero.cta.primary.href}
         class="rounded-lg bg-brand-600 px-5 py-3 font-medium text-white transition hover:bg-brand-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
       >
-        Explore Work
+        {hero.cta.primary.label}
       </a>
 
       <a
-        href="/journal"
+        href={hero.cta.secondary.href}
         class="rounded-lg border border-slate-200 px-5 py-3 font-medium transition hover:bg-surface-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
       >
-        Read Journal
+        {hero.cta.secondary.label}
       </a>
     </div>
   </div>
