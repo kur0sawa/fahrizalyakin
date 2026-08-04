@@ -1,4 +1,7 @@
 ---
+import Navbar from "../components/layout/Navbar.astro";
+import Footer from "../components/layout/Footer.astro";
+import { site } from "../config/site";
 import "../styles/global.css";
 
 interface Props {
@@ -7,9 +10,12 @@ interface Props {
 }
 
 const {
-  title = "Fahrizal Yakin",
-  description = "Personal website about design, code, and data.",
+  title = site.name,
+  description = site.description,
 } = Astro.props;
+
+const pageTitle =
+  title === site.name ? site.name : `${title} | ${site.name}`;
 ---
 
 <!doctype html>
@@ -18,11 +24,16 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
-
     <title>{title}</title>
   </head>
 
-  <body>
-    <slot />
+  <body class="flex min-h-screen flex-col">
+    <Navbar />
+
+    <main class="flex-1">
+      <slot />
+    </main>
+
+    <Footer />
   </body>
 </html>
