@@ -28,6 +28,7 @@ const formattedDate = project.data.publishedAt.toLocaleDateString("en-US", {
 <BaseLayout
   title={project.data.title}
   description={project.data.description}
+  image={project.data.cover ?? "/og-default.jpg"}
 >
   <article
     class="container"
