@@ -1,0 +1,98 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const articles = await getCollection(
+    "journal",
+    ({ data }) => !data.draft,
+  );
+
+  return articles.map((article) => ({
+    params: {
+      id: article.id,
+    },
+    props: {
+      article,
+    },
+  }));
+}
+
+const { article } = Astro.props;
+const { Content } = await render(article);
+
+const formattedDate = article.data.publishedAt.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<BaseLayout
+  title={article.data.title}
+  description={article.data.description}
+>
+  <article
+    class="container"
+    style="padding-block: var(--section-padding-y);"
+  >
+    <header class="max-w-3xl">
+      <a
+        href="/journal"
+        class="inline-flex items-center gap-2 font-medium text-foreground-muted transition hover:text-brand-600"
+      >
+        <span aria-hidden="true">←</span>
+        All articles
+      </a>
+
+      <div class="mt-10 flex flex-wrap items-center gap-3 font-code text-sm">
+        <span class="font-medium text-brand-600">
+          {article.data.category}
+        </span>
+
+        <span aria-hidden="true" class="text-slate-300">
+          /
+        </span>
+
+        <time
+          datetime={article.data.publishedAt.toISOString()}
+          class="text-foreground-muted"
+        >
+          {formattedDate}
+        </time>
+      </div>
+
+      <h1
+        class="mt-5 font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-5xl lg:text-6xl"
+      >
+        {article.data.title}
+      </h1>
+
+      <p
+        class="mt-6 max-w-2xl text-lg leading-8 text-foreground-muted sm:text-xl"
+      >
+        {article.data.description}
+      </p>
+
+      {
+        article.data.tags.length > 0 && (
+          <ul class="mt-8 flex flex-wrap gap-2">
+            {article.data.tags.map((tag) => (
+              <li
+                class="rounded-full border border-slate-200 px-3 py-1.5 text-sm text-foreground-muted"
+              >
+                {tag}
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </header>
+
+    <div
+      class="prose-content mt-16 max-w-3xl border-t border-slate-200 pt-12"
+    >
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
