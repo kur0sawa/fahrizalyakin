@@ -58,7 +58,7 @@ const tools = [
     </header>
 
     <div
-      class="mt-16 grid gap-12 border-t border-slate-200 pt-12 lg:grid-cols-[1.35fr_0.65fr] lg:gap-20"
+      class="mt-16 grid gap-12 border-t border-[var(--color-border)] pt-12 lg:grid-cols-[1.35fr_0.65fr] lg:gap-20"
     >
       <div class="prose-content max-w-3xl">
         <p>
@@ -100,7 +100,7 @@ const tools = [
           {
             tools.map((tool) => (
               <li
-                class="rounded-full border border-slate-200 px-3 py-1.5 text-sm text-foreground-muted"
+                class="rounded-full border border-[var(--color-border)] px-3 py-1.5 text-sm text-foreground-muted"
               >
                 {tool}
               </li>
@@ -108,7 +108,7 @@ const tools = [
           }
         </ul>
 
-        <div class="mt-10 border-t border-slate-200 pt-8">
+        <div class="mt-10 border-t border-[var(--color-border)] pt-8">
           <h2 class="font-heading text-xl font-semibold tracking-tight">
             Currently
           </h2>
@@ -121,14 +121,14 @@ const tools = [
       </aside>
     </div>
 
-    <div class="mt-20 border-t border-slate-200 pt-12">
+    <div class="mt-20 border-t border-[var(--color-border)] pt-12">
       <h2
         class="font-heading text-3xl font-semibold tracking-tight sm:text-4xl"
       >
         How I work
       </h2>
 
-      <div class="mt-10 grid gap-px overflow-hidden rounded-card border border-slate-200 bg-slate-200 md:grid-cols-3">
+      <div class="mt-10 grid gap-px overflow-hidden rounded-card border border-[var(--color-border)] bg-[var(--color-border)] md:grid-cols-3">
         {
           disciplines.map((discipline) => (
             <article class="bg-surface p-6 sm:p-8">

@@ -16,7 +16,7 @@ const projects = (
 ---
 
 <section
-  class="container border-t border-slate-200"
+  class="container border-t border-[var(--color-border)]"
   style="padding-block: var(--section-padding-y);"
 >
   <SectionTitle
@@ -30,7 +30,7 @@ const projects = (
     projects.length > 0 ? (
       <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {projects.map((project) => (
-          <article class="group flex min-h-72 flex-col rounded-card border border-slate-200 bg-surface p-6 transition duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-[var(--shadow-card)]">
+          <article class="group flex min-h-72 flex-col rounded-card border border-[var(--color-border)] bg-surface p-6 transition duration-300 hover:-translate-y-1 hover:border-brand-500 hover:shadow-[var(--shadow-card)]">
             <p class="font-code text-sm font-medium text-brand-600">
               {project.data.category}
             </p>

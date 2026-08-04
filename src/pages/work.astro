@@ -42,7 +42,7 @@ const projects = (
       projects.length > 0 ? (
         <div class="mt-16 grid gap-5 md:grid-cols-2">
           {projects.map((project) => (
-            <article class="group flex min-h-80 flex-col rounded-card border border-slate-200 bg-surface p-6 transition duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-[var(--shadow-card)] sm:p-8">
+            <article class="group flex min-h-80 flex-col rounded-card border border-[var(--color-border)] bg-surface p-6 transition duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-[var(--shadow-card)] sm:p-8">
               <div class="flex flex-wrap items-center gap-3 font-code text-sm">
                 <span class="font-medium text-brand-600">
                   {project.data.category}
@@ -82,7 +82,7 @@ const projects = (
                   project.data.technologies.length > 0 && (
                     <ul class="mt-6 flex flex-wrap gap-2">
                       {project.data.technologies.slice(0, 4).map((technology) => (
-                        <li class="rounded-full border border-slate-200 px-3 py-1 text-sm text-foreground-muted">
+                        <li class="rounded-full border border-[var(--color-border)] px-3 py-1 text-sm text-foreground-muted">
                           {technology}
                         </li>
                       ))}
@@ -109,7 +109,7 @@ const projects = (
           ))}
         </div>
       ) : (
-        <div class="mt-16 rounded-card border border-slate-200 p-8">
+        <div class="mt-16 rounded-card border border-[var(--color-border)] p-8">
           <p class="text-foreground-muted">
             Projects will appear here soon.
           </p>

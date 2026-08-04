@@ -4,7 +4,7 @@ import { currentFocus } from "../../data/current-focus";
 ---
 
 <section
-  class="container border-t border-slate-200"
+  class="container border-t border-[var(--color-border)]"
   style="padding-block: var(--section-padding-y);"
 >
   <SectionTitle
@@ -13,7 +13,7 @@ import { currentFocus } from "../../data/current-focus";
   />
 
   <ul
-    class="grid gap-px overflow-hidden rounded-card border border-slate-200 bg-slate-200 md:grid-cols-3"
+    class="grid gap-px overflow-hidden rounded-card border border-[var(--color-border)] bg-[var(--color-border)] md:grid-cols-3"
   >
     {
       currentFocus.map((item) => (

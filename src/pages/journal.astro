@@ -40,7 +40,7 @@ const articles = (
 
     {
       articles.length > 0 ? (
-        <div class="mt-16 divide-y divide-slate-200 border-y border-slate-200">
+        <div class="mt-16 divide-y divide-[var(--color-border)] border-y border-[var(--color-border)]">
           {articles.map((article) => (
             <article class="group py-8 sm:py-10">
               <div class="grid gap-5 md:grid-cols-[10rem_1fr] md:gap-10">
@@ -82,7 +82,7 @@ const articles = (
                       <ul class="mt-5 flex flex-wrap gap-2">
                         {article.data.tags.slice(0, 4).map((tag) => (
                           <li
-                            class="rounded-full border border-slate-200 px-3 py-1 text-sm text-foreground-muted"
+                            class="rounded-full border border-[var(--color-border)] px-3 py-1 text-sm text-foreground-muted"
                           >
                             {tag}
                           </li>
@@ -111,7 +111,7 @@ const articles = (
           ))}
         </div>
       ) : (
-        <div class="mt-16 rounded-card border border-slate-200 p-8">
+        <div class="mt-16 rounded-card border border-[var(--color-border)] p-8">
           <p class="text-foreground-muted">
             Journal entries will appear here soon.
           </p>

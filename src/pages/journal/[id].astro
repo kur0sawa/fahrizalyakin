@@ -87,7 +87,7 @@ const formattedDate = article.data.publishedAt.toLocaleDateString("en-US", {
           <ul class="mt-8 flex flex-wrap gap-2">
             {article.data.tags.map((tag) => (
               <li
-                class="rounded-full border border-slate-200 px-3 py-1.5 text-sm text-foreground-muted"
+                class="rounded-full border border-[var(--color-border)] px-3 py-1.5 text-sm text-foreground-muted"
               >
                 {tag}
               </li>
@@ -98,7 +98,7 @@ const formattedDate = article.data.publishedAt.toLocaleDateString("en-US", {
     </header>
 
     <div
-      class="prose-content mt-16 max-w-3xl border-t border-slate-200 pt-12"
+      class="prose-content mt-16 max-w-3xl border-t border-[var(--color-border)] pt-12"
     >
       <Content />
     </div>

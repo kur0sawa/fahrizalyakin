@@ -80,7 +80,7 @@ const formattedDate = project.data.publishedAt.toLocaleDateString("en-US", {
         project.data.technologies.length > 0 && (
           <ul class="mt-8 flex flex-wrap gap-2">
             {project.data.technologies.map((technology) => (
-              <li class="rounded-full border border-slate-200 px-3 py-1.5 text-sm text-foreground-muted">
+              <li class="rounded-full border border-[var(--color-border)] px-3 py-1.5 text-sm text-foreground-muted">
                 {technology}
               </li>
             ))}
@@ -107,7 +107,7 @@ const formattedDate = project.data.publishedAt.toLocaleDateString("en-US", {
                 href={project.data.repositoryUrl}
                 target="_blank"
                 rel="noreferrer"
-                class="rounded-lg border border-slate-200 px-5 py-3 font-medium transition hover:bg-surface-muted"
+                class="rounded-lg border border-[var(--color-border)] px-5 py-3 font-medium transition hover:bg-surface-muted"
               >
                 View repository
               </a>
@@ -118,7 +118,7 @@ const formattedDate = project.data.publishedAt.toLocaleDateString("en-US", {
     </header>
 
     <div
-      class="prose-content mt-16 max-w-3xl border-t border-slate-200 pt-12"
+      class="prose-content mt-16 max-w-3xl border-t border-[var(--color-border)] pt-12"
     >
       <Content />
     </div>
