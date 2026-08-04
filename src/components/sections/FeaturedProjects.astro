@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import SectionTitle from "../ui/SectionTitle.astro";
+import { ArrowRight } from "@lucide/astro";
 
 const projects = (
   await getCollection("work", ({ data }) => {
@@ -50,12 +51,12 @@ const projects = (
               >
                 View project
 
-                <span
-                  aria-hidden="true"
-                  class="transition-transform group-hover:translate-x-1"
-                >
-                  →
-                </span>
+                <ArrowRight
+                    aria-hidden="true"
+                    size={18}
+                    strokeWidth={2}
+                    class="transition-transform group-hover:translate-x-1"
+                />
               </a>
             </div>
           </article>

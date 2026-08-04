@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import SectionTitle from "../ui/SectionTitle.astro";
+import { ArrowRight } from "@lucide/astro";
 
 const articles = (
   await getCollection("journal", ({ data }) => {
@@ -70,12 +71,12 @@ const articles = (
             >
               Read article
 
-              <span
+              <ArrowRight
                 aria-hidden="true"
+                size={18}
+                strokeWidth={2}
                 class="transition-transform group-hover:translate-x-1"
-              >
-                →
-              </span>
+              />
             </a>
           </article>
         ))}
