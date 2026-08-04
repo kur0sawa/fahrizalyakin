@@ -1,0 +1,92 @@
+---
+import SectionTitle from "../ui/SectionTitle.astro";
+
+const articles = [
+  {
+    category: "Development",
+    title: "Building My Personal Website with Astro",
+    description:
+      "Notes from designing and developing a fast, minimal personal website from the ground up.",
+    date: "August 2026",
+    href: "/journal",
+  },
+  {
+    category: "Data",
+    title: "Learning to Tell Better Stories with Data",
+    description:
+      "Exploring how structure, context, and visual clarity can turn raw data into useful insights.",
+    date: "August 2026",
+    href: "/journal",
+  },
+  {
+    category: "Design",
+    title: "Where Design, Code, and Data Meet",
+    description:
+      "Thoughts on combining different disciplines to build digital products that are useful and understandable.",
+    date: "August 2026",
+    href: "/journal",
+  },
+];
+---
+
+<section
+  class="container border-t border-slate-200"
+  style="padding-block: var(--section-padding-y);"
+>
+  <SectionTitle
+    title="Latest Journal"
+    description="Notes about design, development, data, and the things I learn along the way."
+    linkLabel="View all articles"
+    linkHref="/journal"
+  />
+
+  <div class="grid gap-x-8 gap-y-10 md:grid-cols-3">
+    {
+      articles.map((article) => (
+        <article class="group">
+          <div class="flex items-center gap-3 font-code text-sm">
+            <span class="font-medium text-brand-600">
+              {article.category}
+            </span>
+
+            <span aria-hidden="true" class="text-slate-300">
+              /
+            </span>
+
+            <span class="text-foreground-muted">
+              {article.date}
+            </span>
+          </div>
+
+          <h3 class="mt-4 font-heading text-xl font-semibold leading-snug tracking-tight">
+            <a
+              href={article.href}
+              class="transition group-hover:text-brand-600"
+            >
+              {article.title}
+            </a>
+          </h3>
+
+          <p class="mt-3 leading-7 text-foreground-muted">
+            {article.description}
+          </p>
+
+          <a
+            href={article.href}
+            class="mt-5 inline-flex items-center gap-2 font-medium text-foreground transition group-hover:text-brand-600"
+            aria-label={`Read ${article.title}`}
+          >
+            Read article
+
+            <span
+              aria-hidden="true"
+              class="transition-transform group-hover:translate-x-1"
+            >
+              →
+            </span>
+          </a>
+        </article>
+      ))
+    }
+  </div>
+</section>
