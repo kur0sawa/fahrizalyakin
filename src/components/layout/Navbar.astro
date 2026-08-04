@@ -1,4 +1,5 @@
 ---
+import { Menu, X } from "@lucide/astro";
 import { navigation } from "../../config/navigation";
 
 const currentPath = Astro.url.pathname;
@@ -17,8 +18,9 @@ const currentPath = Astro.url.pathname;
       FY
     </a>
 
-    <nav aria-label="Main navigation">
-      <ul class="flex items-center gap-4 sm:gap-6">
+    <!-- Desktop navigation -->
+    <nav aria-label="Main navigation" class="hidden md:block">
+      <ul class="flex items-center gap-6">
         {
           navigation.map((item) => {
             const isActive =
@@ -55,5 +57,115 @@ const currentPath = Astro.url.pathname;
         }
       </ul>
     </nav>
+
+    <!-- Mobile menu button -->
+    <button
+      type="button"
+      data-menu-button
+      aria-label="Open navigation menu"
+      aria-controls="mobile-navigation"
+      aria-expanded="false"
+      class="inline-flex size-10 items-center justify-center rounded-lg text-foreground transition hover:bg-surface-muted md:hidden"
+    >
+      <Menu
+        data-menu-open-icon
+        aria-hidden="true"
+        size={22}
+        stroke-width={2}
+      />
+
+      <X
+        data-menu-close-icon
+        aria-hidden="true"
+        size={22}
+        stroke-width={2}
+        class="hidden"
+      />
+    </button>
   </div>
+
+  <!-- Mobile navigation -->
+  <nav
+    id="mobile-navigation"
+    data-mobile-navigation
+    aria-label="Mobile navigation"
+    class="hidden border-t border-slate-200 md:hidden"
+  >
+    <ul class="container flex flex-col py-3">
+      {
+        navigation.map((item) => {
+          const isActive =
+            item.href === "/"
+              ? currentPath === "/"
+              : currentPath.startsWith(item.href);
+
+          return (
+            <li>
+              <a
+                href={item.href}
+                aria-current={isActive ? "page" : undefined}
+                class:list={[
+                  "block rounded-lg px-3 py-3 text-sm transition hover:bg-surface-muted hover:text-brand-600",
+                  isActive
+                    ? "bg-brand-50 font-medium text-brand-600"
+                    : "text-foreground-muted",
+                ]}
+              >
+                {item.label}
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </nav>
 </header>
+
+<script>
+  const menuButton = document.querySelector<HTMLButtonElement>(
+    "[data-menu-button]",
+  );
+
+  const mobileNavigation = document.querySelector<HTMLElement>(
+    "[data-mobile-navigation]",
+  );
+
+  const openIcon = document.querySelector<HTMLElement>(
+    "[data-menu-open-icon]",
+  );
+
+  const closeIcon = document.querySelector<HTMLElement>(
+    "[data-menu-close-icon]",
+  );
+
+  function closeMenu() {
+    if (!menuButton || !mobileNavigation || !openIcon || !closeIcon) return;
+
+    menuButton.setAttribute("aria-expanded", "false");
+    menuButton.setAttribute("aria-label", "Open navigation menu");
+
+    mobileNavigation.classList.add("hidden");
+    openIcon.classList.remove("hidden");
+    closeIcon.classList.add("hidden");
+  }
+
+  menuButton?.addEventListener("click", () => {
+    if (!mobileNavigation || !openIcon || !closeIcon) return;
+
+    const isOpen = menuButton.getAttribute("aria-expanded") === "true";
+
+    menuButton.setAttribute("aria-expanded", String(!isOpen));
+    menuButton.setAttribute(
+      "aria-label",
+      isOpen ? "Open navigation menu" : "Close navigation menu",
+    );
+
+    mobileNavigation.classList.toggle("hidden", isOpen);
+    openIcon.classList.toggle("hidden", !isOpen);
+    closeIcon.classList.toggle("hidden", isOpen);
+  });
+
+  mobileNavigation
+    ?.querySelectorAll("a")
+    .forEach((link) => link.addEventListener("click", closeMenu));
+</script>

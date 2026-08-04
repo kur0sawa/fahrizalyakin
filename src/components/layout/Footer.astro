@@ -1,7 +1,20 @@
 ---
+import { Mail, Rss } from "@lucide/astro";
+import {
+  Github,
+  Instagram,
+} from "simple-icons-astro";
+
 import { socialLinks } from "../../config/social";
 
 const currentYear = new Date().getFullYear();
+
+const icons = {
+  github: Github,
+  instagram: Instagram,
+  mail: Mail,
+  rss: Rss,
+};
 ---
 
 <footer class="border-t border-slate-200 bg-surface">
@@ -19,9 +32,10 @@ const currentYear = new Date().getFullYear();
     </div>
 
     <nav aria-label="Social links">
-      <ul class="flex flex-wrap items-center gap-x-5 gap-y-3">
+      <ul class="flex flex-wrap items-center gap-2">
         {
           socialLinks.map((item) => {
+            const Icon = icons[item.icon];
             const isExternal = item.href.startsWith("http");
 
             return (
@@ -30,9 +44,15 @@ const currentYear = new Date().getFullYear();
                   href={item.href}
                   target={isExternal ? "_blank" : undefined}
                   rel={isExternal ? "noreferrer" : undefined}
-                  class="relative text-sm text-foreground-muted transition hover:text-brand-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-600"
+                  aria-label={item.label}
+                  title={item.label}
+                  class="inline-flex size-10 items-center justify-center rounded-lg text-foreground-muted transition hover:bg-brand-50 hover:text-brand-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
                 >
-                  {item.label}
+                  <Icon
+                    aria-hidden="true"
+                    width={19}
+                    height={19}
+                  />
                 </a>
               </li>
             );
