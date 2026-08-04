@@ -22,6 +22,22 @@
 
 :root {
   color-scheme: light;
+
+  --color-surface: #ffffff;
+  --color-surface-muted: #f8fafc;
+  --color-foreground: #0f172a;
+  --color-foreground-muted: #64748b;
+  --color-border: #e2e8f0;
+}
+
+html.dark {
+  color-scheme: dark;
+
+  --color-surface: #0b1120;
+  --color-surface-muted: #111827;
+  --color-foreground: #f8fafc;
+  --color-foreground-muted: #94a3b8;
+  --color-border: #1e293b;
 }
 
 html {
