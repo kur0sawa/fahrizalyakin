@@ -1,0 +1,119 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("work", ({ data }) => !data.draft);
+
+  return projects.map((project) => ({
+    params: {
+      id: project.id,
+    },
+    props: {
+      project,
+    },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+
+const formattedDate = project.data.publishedAt.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<BaseLayout
+  title={project.data.title}
+  description={project.data.description}
+>
+  <article
+    class="container"
+    style="padding-block: var(--section-padding-y);"
+  >
+    <header class="max-w-3xl">
+      <a
+        href="/work"
+        class="inline-flex items-center gap-2 font-medium text-foreground-muted transition hover:text-brand-600"
+      >
+        <span aria-hidden="true">←</span>
+        All work
+      </a>
+
+      <div class="mt-10 flex flex-wrap items-center gap-3 font-code text-sm">
+        <span class="font-medium text-brand-600">
+          {project.data.category}
+        </span>
+
+        <span aria-hidden="true" class="text-slate-300">
+          /
+        </span>
+
+        <time
+          datetime={project.data.publishedAt.toISOString()}
+          class="text-foreground-muted"
+        >
+          {formattedDate}
+        </time>
+      </div>
+
+      <h1
+        class="mt-5 font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-5xl lg:text-6xl"
+      >
+        {project.data.title}
+      </h1>
+
+      <p class="mt-6 max-w-2xl text-lg leading-8 text-foreground-muted sm:text-xl">
+        {project.data.description}
+      </p>
+
+      {
+        project.data.technologies.length > 0 && (
+          <ul class="mt-8 flex flex-wrap gap-2">
+            {project.data.technologies.map((technology) => (
+              <li class="rounded-full border border-slate-200 px-3 py-1.5 text-sm text-foreground-muted">
+                {technology}
+              </li>
+            ))}
+          </ul>
+        )
+      }
+
+      {
+        (project.data.projectUrl || project.data.repositoryUrl) && (
+          <div class="mt-8 flex flex-wrap gap-3">
+            {project.data.projectUrl && (
+              <a
+                href={project.data.projectUrl}
+                target="_blank"
+                rel="noreferrer"
+                class="rounded-lg bg-brand-600 px-5 py-3 font-medium text-white transition hover:bg-brand-700"
+              >
+                Visit project
+              </a>
+            )}
+
+            {project.data.repositoryUrl && (
+              <a
+                href={project.data.repositoryUrl}
+                target="_blank"
+                rel="noreferrer"
+                class="rounded-lg border border-slate-200 px-5 py-3 font-medium transition hover:bg-surface-muted"
+              >
+                View repository
+              </a>
+            )}
+          </div>
+        )
+      }
+    </header>
+
+    <div
+      class="prose-content mt-16 max-w-3xl border-t border-slate-200 pt-12"
+    >
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
