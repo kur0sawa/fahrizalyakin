@@ -29,9 +29,12 @@ import { hero } from "../../data/site";
     </p>
 
     <div class="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-  <Button href={hero.cta.primary.href}>
-    {hero.cta.primary.label}
-  </Button>
+  <Button
+  href={hero.cta.primary.href}
+  showArrow
+>
+  {hero.cta.primary.label}
+</Button>
 
   <Button
     href={hero.cta.secondary.href}
