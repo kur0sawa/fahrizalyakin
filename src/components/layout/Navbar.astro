@@ -6,7 +6,7 @@ import ThemeToggle from "../ui/ThemeToggle.astro";
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="border-b border-[var(--color-border)] bg-surface">
+<header class="sticky top-0 z-50 border-b border-[var(--color-border)] bg-surface/95 backdrop-blur">
   <div
     class="container flex items-center justify-between"
     style="height: var(--header-height);"

@@ -42,13 +42,13 @@ const projects = (
       projects.length > 0 ? (
         <div class="mt-16 grid gap-5 md:grid-cols-2">
           {projects.map((project) => (
-            <article class="group flex min-h-80 flex-col rounded-card border border-[var(--color-border)] bg-surface p-6 transition duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-[var(--shadow-card)] sm:p-8">
+            <article class="group flex min-h-80 flex-col rounded-card border border-[var(--color-border)] bg-surface p-6 transition duration-300 hover:-translate-y-1 hover:border-brand-500 hover:shadow-[var(--shadow-card)] sm:p-8">
               <div class="flex flex-wrap items-center gap-3 font-code text-sm">
                 <span class="font-medium text-brand-600">
                   {project.data.category}
                 </span>
 
-                <span aria-hidden="true" class="text-slate-300">
+                <span aria-hidden="true" class="text-[var(--color-border)]">
                   /
                 </span>
 
