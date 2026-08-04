@@ -1,20 +1,121 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const articles = (
+  await getCollection("journal", ({ data }) => !data.draft)
+).sort(
+  (a, b) =>
+    b.data.publishedAt.getTime() - a.data.publishedAt.getTime(),
+);
 ---
 
 <BaseLayout
   title="Journal"
-  description="Notes and articles about design, code, and data."
+  description="Notes about design, software development, data, and the things I learn along the way."
 >
-  <section class="container py-20 sm:py-24">
-    <p class="font-code text-sm font-medium text-brand-600">Journal</p>
+  <section
+    class="container"
+    style="padding-block: var(--section-padding-y);"
+  >
+    <header class="max-w-3xl">
+      <p class="font-code text-sm font-medium text-brand-600">
+        Journal
+      </p>
 
-    <h1 class="mt-4 font-heading text-4xl font-semibold tracking-tight sm:text-5xl">
-      Notes from learning and building.
-    </h1>
+      <h1
+        class="mt-5 font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-5xl lg:text-6xl"
+      >
+        Notes from things I build, learn, and explore.
+      </h1>
 
-    <p class="mt-6 max-w-2xl text-lg leading-8 text-foreground-muted">
-      Articles, tutorials, observations, and lessons gathered along the way.
-    </p>
+      <p
+        class="mt-6 max-w-2xl text-lg leading-8 text-foreground-muted sm:text-xl"
+      >
+        Writing about design, software development, data, and the process
+        behind the work.
+      </p>
+    </header>
+
+    {
+      articles.length > 0 ? (
+        <div class="mt-16 divide-y divide-slate-200 border-y border-slate-200">
+          {articles.map((article) => (
+            <article class="group py-8 sm:py-10">
+              <div class="grid gap-5 md:grid-cols-[10rem_1fr] md:gap-10">
+                <div class="font-code text-sm">
+                  <time
+                    datetime={article.data.publishedAt.toISOString()}
+                    class="text-foreground-muted"
+                  >
+                    {article.data.publishedAt.toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </time>
+
+                  <p class="mt-2 font-medium text-brand-600">
+                    {article.data.category}
+                  </p>
+                </div>
+
+                <div class="max-w-3xl">
+                  <h2
+                    class="font-heading text-2xl font-semibold leading-snug tracking-tight sm:text-3xl"
+                  >
+                    <a
+                      href={`/journal/${article.id}`}
+                      class="transition group-hover:text-brand-600"
+                    >
+                      {article.data.title}
+                    </a>
+                  </h2>
+
+                  <p class="mt-4 leading-7 text-foreground-muted">
+                    {article.data.description}
+                  </p>
+
+                  {
+                    article.data.tags.length > 0 && (
+                      <ul class="mt-5 flex flex-wrap gap-2">
+                        {article.data.tags.slice(0, 4).map((tag) => (
+                          <li
+                            class="rounded-full border border-slate-200 px-3 py-1 text-sm text-foreground-muted"
+                          >
+                            {tag}
+                          </li>
+                        ))}
+                      </ul>
+                    )
+                  }
+
+                  <a
+                    href={`/journal/${article.id}`}
+                    class="mt-6 inline-flex items-center gap-2 font-medium text-foreground transition group-hover:text-brand-600"
+                    aria-label={`Read ${article.data.title}`}
+                  >
+                    Read article
+
+                    <span
+                      aria-hidden="true"
+                      class="transition-transform group-hover:translate-x-1"
+                    >
+                      →
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <div class="mt-16 rounded-card border border-slate-200 p-8">
+          <p class="text-foreground-muted">
+            Journal entries will appear here soon.
+          </p>
+        </div>
+      )
+    }
   </section>
 </BaseLayout>
