@@ -1,21 +1,148 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const disciplines = [
+  {
+    title: "Design",
+    description:
+      "Visual identity, interface design, layout systems, and clear digital communication.",
+  },
+  {
+    title: "Development",
+    description:
+      "Building useful, maintainable, and accessible experiences for the web.",
+  },
+  {
+    title: "Data",
+    description:
+      "Learning to analyze information and communicate insights through thoughtful visualizations.",
+  },
+];
+
+const tools = [
+  "Adobe Illustrator",
+  "Adobe Photoshop",
+  "Figma",
+  "Astro",
+  "Tailwind CSS",
+  "TypeScript",
+  "GitHub",
+];
 ---
 
 <BaseLayout
   title="About"
-  description="About Fahrizal Yakin, a designer, developer, and data scientist."
+  description="About Fahrizal Yakin, a designer and developer exploring data science."
 >
-  <section class="container py-20 sm:py-24">
-    <p class="font-code text-sm font-medium text-brand-600">About</p>
+  <section
+    class="container"
+    style="padding-block: var(--section-padding-y);"
+  >
+    <header class="max-w-3xl">
+      <p class="font-code text-sm font-medium text-brand-600">
+        About
+      </p>
 
-    <h1 class="mt-4 font-heading text-4xl font-semibold tracking-tight sm:text-5xl">
-      Designer, developer, and data scientist.
-    </h1>
+      <h1
+        class="mt-5 font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-5xl lg:text-6xl"
+      >
+        I enjoy turning ideas into clear and useful digital experiences.
+      </h1>
 
-    <p class="mt-6 max-w-2xl text-lg leading-8 text-foreground-muted">
-      I combine visual thinking, software development, and data exploration to
-      build thoughtful digital experiences.
-    </p>
+      <p
+        class="mt-6 max-w-2xl text-lg leading-8 text-foreground-muted sm:text-xl"
+      >
+        I am Fahrizal Yakin, a designer and developer based in Indonesia,
+        currently deepening my understanding of data science.
+      </p>
+    </header>
+
+    <div
+      class="mt-16 grid gap-12 border-t border-slate-200 pt-12 lg:grid-cols-[1.35fr_0.65fr] lg:gap-20"
+    >
+      <div class="prose-content max-w-3xl">
+        <p>
+          My background began in visual design. Over the years, I have worked
+          on brand identities, social media visuals, print materials, and
+          interface design.
+        </p>
+
+        <p>
+          That experience taught me that good design is not only about how
+          something looks. It is also about structure, clarity, context, and
+          helping people understand what matters.
+        </p>
+
+        <p>
+          My interest gradually expanded into software development because I
+          wanted to build the things I designed, not only hand them off as
+          static concepts.
+        </p>
+
+        <p>
+          Today, I am exploring the intersection of design, code, and data.
+          These disciplines give me different ways to understand problems and
+          turn ideas into something tangible.
+        </p>
+
+        <p>
+          This website is where I collect selected work, document what I am
+          learning, and publish experiments that may still be taking shape.
+        </p>
+      </div>
+
+      <aside>
+        <h2 class="font-heading text-xl font-semibold tracking-tight">
+          Tools I use
+        </h2>
+
+        <ul class="mt-5 flex flex-wrap gap-2">
+          {
+            tools.map((tool) => (
+              <li
+                class="rounded-full border border-slate-200 px-3 py-1.5 text-sm text-foreground-muted"
+              >
+                {tool}
+              </li>
+            ))
+          }
+        </ul>
+
+        <div class="mt-10 border-t border-slate-200 pt-8">
+          <h2 class="font-heading text-xl font-semibold tracking-tight">
+            Currently
+          </h2>
+
+          <p class="mt-4 leading-7 text-foreground-muted">
+            Building this personal website, learning data science, and
+            exploring better ways to connect visual design with software.
+          </p>
+        </div>
+      </aside>
+    </div>
+
+    <div class="mt-20 border-t border-slate-200 pt-12">
+      <h2
+        class="font-heading text-3xl font-semibold tracking-tight sm:text-4xl"
+      >
+        How I work
+      </h2>
+
+      <div class="mt-10 grid gap-px overflow-hidden rounded-card border border-slate-200 bg-slate-200 md:grid-cols-3">
+        {
+          disciplines.map((discipline) => (
+            <article class="bg-surface p-6 sm:p-8">
+              <h3 class="font-heading text-xl font-semibold tracking-tight">
+                {discipline.title}
+              </h3>
+
+              <p class="mt-4 leading-7 text-foreground-muted">
+                {discipline.description}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
   </section>
 </BaseLayout>
