@@ -1,4 +1,5 @@
 ---
+import Button from "../ui/Button.astro";
 import { hero } from "../../data/site";
 ---
 
@@ -28,19 +29,16 @@ import { hero } from "../../data/site";
     </p>
 
     <div class="mt-10 flex flex-wrap gap-3">
-      <a
-        href={hero.cta.primary.href}
-        class="rounded-lg bg-brand-600 px-5 py-3 font-medium text-white transition hover:bg-brand-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
-      >
-        {hero.cta.primary.label}
-      </a>
+  <Button href={hero.cta.primary.href}>
+    {hero.cta.primary.label}
+  </Button>
 
-      <a
-        href={hero.cta.secondary.href}
-        class="rounded-lg border border-slate-200 px-5 py-3 font-medium transition hover:bg-surface-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
-      >
-        {hero.cta.secondary.label}
-      </a>
-    </div>
+  <Button
+    href={hero.cta.secondary.href}
+    variant="secondary"
+  >
+    {hero.cta.secondary.label}
+  </Button>
+</div>
   </div>
 </section>
