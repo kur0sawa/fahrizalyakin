@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { ArrowLeft } from "@lucide/astro";
 
 export async function getStaticPaths() {
   const projects = await getCollection("work", ({ data }) => !data.draft);
@@ -37,9 +38,14 @@ const formattedDate = project.data.publishedAt.toLocaleDateString("en-US", {
     <header class="max-w-3xl">
       <a
         href="/work"
-        class="inline-flex items-center gap-2 font-medium text-foreground-muted transition hover:text-brand-600"
+        class="group inline-flex items-center gap-2 font-medium text-foreground-muted transition hover:text-brand-600"
       >
-        <span aria-hidden="true">←</span>
+        <ArrowLeft
+          aria-hidden="true"
+          size={18}
+          stroke-width={2}
+          class="transition-transform group-hover:-translate-x-1"
+        />
         All work
       </a>
 
