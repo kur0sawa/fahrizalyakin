@@ -2,14 +2,48 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="Fahrizal Yakin">
-  <main class="container py-24">
-    <h1 class="text-5xl font-bold">
-      Fahrizal Yakin
-    </h1>
+<BaseLayout
+  title="Fahrizal Yakin | Design × Code × Data"
+  description="Designer, Developer, and Data Scientist exploring thoughtful digital experiences."
+>
+  <main class="container flex min-h-screen items-center py-20">
+    <section class="max-w-3xl">
+      <p class="mb-5 font-code text-sm font-medium text-brand-600">
+        Fahrizal Yakin
+      </p>
 
-    <p class="mt-4 text-neutral-600">
-      Engineer • Designer • Data Science Learner
-    </p>
+      <h1
+        class="font-heading text-5xl leading-tight font-semibold tracking-tight sm:text-6xl lg:text-7xl"
+      >
+        Design.
+        <br />
+        Code.
+        <br />
+        Data.
+      </h1>
+
+      <p
+        class="mt-8 max-w-2xl text-lg leading-8 text-foreground-muted sm:text-xl"
+      >
+        I design digital experiences, build software, and explore data to
+        create useful things.
+      </p>
+
+      <nav class="mt-10 flex flex-wrap gap-3" aria-label="Primary actions">
+        <a
+          href="/work"
+          class="rounded-lg bg-brand-600 px-5 py-3 font-medium text-white transition hover:bg-brand-700"
+        >
+          Explore Work
+        </a>
+
+        <a
+          href="/journal"
+          class="rounded-lg border border-slate-200 px-5 py-3 font-medium transition hover:bg-surface-muted"
+        >
+          Read Journal
+        </a>
+      </nav>
+    </section>
   </main>
 </BaseLayout>

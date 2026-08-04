@@ -3,18 +3,22 @@ import "../styles/global.css";
 
 interface Props {
   title?: string;
+  description?: string;
 }
 
 const {
-  title = "Fahrizal Yakin"
+  title = "Fahrizal Yakin",
+  description = "Personal website about design, code, and data.",
 } = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+
     <title>{title}</title>
   </head>
 
