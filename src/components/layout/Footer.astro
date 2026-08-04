@@ -4,30 +4,39 @@ import { socialLinks } from "../../config/social";
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="border-t border-slate-200">
+<footer class="border-t border-slate-200 bg-surface">
   <div
-    class="container flex flex-col gap-6 py-8 sm:flex-row sm:items-center sm:justify-between"
+    class="container flex flex-col gap-8 py-8 sm:flex-row sm:items-center sm:justify-between"
   >
     <div>
-      <p class="font-heading font-medium">Fahrizal Yakin</p>
+      <p class="font-heading font-medium tracking-tight">
+        Fahrizal Yakin
+      </p>
+
       <p class="mt-1 text-sm text-foreground-muted">
         Design × Code × Data
       </p>
     </div>
 
     <nav aria-label="Social links">
-      <ul class="flex flex-wrap gap-4">
+      <ul class="flex flex-wrap items-center gap-x-5 gap-y-3">
         {
-          socialLinks.map((item) => (
-            <li>
-              <a
-                href={item.href}
-                class="text-sm text-foreground-muted transition hover:text-brand-600"
-              >
-                {item.label}
-              </a>
-            </li>
-          ))
+          socialLinks.map((item) => {
+            const isExternal = item.href.startsWith("http");
+
+            return (
+              <li>
+                <a
+                  href={item.href}
+                  target={isExternal ? "_blank" : undefined}
+                  rel={isExternal ? "noreferrer" : undefined}
+                  class="relative text-sm text-foreground-muted transition hover:text-brand-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-600"
+                >
+                  {item.label}
+                </a>
+              </li>
+            );
+          })
         }
       </ul>
     </nav>
