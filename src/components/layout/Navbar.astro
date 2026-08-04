@@ -1,0 +1,53 @@
+---
+const navigation = [
+  { label: "Home", href: "/" },
+  { label: "Work", href: "/work" },
+  { label: "Journal", href: "/journal" },
+  { label: "Playground", href: "/playground" },
+  { label: "About", href: "/about" },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="border-b border-slate-200">
+  <div class="container flex h-16 items-center justify-between">
+    <a
+      href="/"
+      class="font-heading text-lg font-semibold tracking-tight"
+      aria-label="Fahrizal Yakin homepage"
+    >
+      FY
+    </a>
+
+    <nav aria-label="Main navigation">
+      <ul class="flex items-center gap-6">
+        {
+          navigation.map((item) => {
+            const isActive =
+              item.href === "/"
+                ? currentPath === "/"
+                : currentPath.startsWith(item.href);
+
+            return (
+              <li>
+                <a
+                  href={item.href}
+                  aria-current={isActive ? "page" : undefined}
+                  class:list={[
+                    "text-sm transition hover:text-brand-600",
+                    isActive
+                      ? "font-medium text-brand-600"
+                      : "text-foreground-muted",
+                  ]}
+                >
+                  {item.label}
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </nav>
+  </div>
+</header>

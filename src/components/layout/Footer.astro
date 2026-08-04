@@ -1,0 +1,44 @@
+---
+const currentYear = new Date().getFullYear();
+
+const socialLinks = [
+  { label: "GitHub", href: "https://github.com/" },
+  { label: "Instagram", href: "https://instagram.com/" },
+  { label: "Email", href: "mailto:email@example.com" },
+  { label: "RSS", href: "/rss.xml" },
+];
+---
+
+<footer class="border-t border-slate-200">
+  <div
+    class="container flex flex-col gap-6 py-8 sm:flex-row sm:items-center sm:justify-between"
+  >
+    <div>
+      <p class="font-heading font-medium">Fahrizal Yakin</p>
+      <p class="mt-1 text-sm text-foreground-muted">
+        Design × Code × Data
+      </p>
+    </div>
+
+    <nav aria-label="Social links">
+      <ul class="flex flex-wrap gap-4">
+        {
+          socialLinks.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="text-sm text-foreground-muted transition hover:text-brand-600"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <p class="text-sm text-foreground-muted">
+      © {currentYear}
+    </p>
+  </div>
+</footer>
