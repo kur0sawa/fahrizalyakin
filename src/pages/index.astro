@@ -1,17 +1,11 @@
 ---
+import Hero from "../components/sections/Hero.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="Fahrizal Yakin | Design × Code × Data">
-  <section class="container py-24">
-    <h1 class="font-heading text-6xl font-semibold">
-      Design.<br />
-      Code.<br />
-      Data.
-    </h1>
-
-    <p class="mt-8 max-w-2xl text-lg leading-8 text-foreground-muted sm:text-xl">
-      I design digital experiences, build software, and explore data to create useful things.
-    </p>
-  </section>
+<BaseLayout
+  title="Fahrizal Yakin"
+  description="Designer, developer, and data scientist exploring thoughtful digital experiences."
+>
+  <Hero />
 </BaseLayout>
