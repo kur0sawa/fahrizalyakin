@@ -1,29 +1,17 @@
 ---
+import { getCollection } from "astro:content";
 import SectionTitle from "../ui/SectionTitle.astro";
 
-const projects = [
-  {
-    category: "Design",
-    title: "NovaNet Brand Identity",
-    description:
-      "A visual identity and digital communication system for a modern internet service provider.",
-    href: "/work",
-  },
-  {
-    category: "Development",
-    title: "Personal Portfolio",
-    description:
-      "A fast and minimal personal website built with Astro, Tailwind CSS, and Cloudflare Pages.",
-    href: "/work",
-  },
-  {
-    category: "Data",
-    title: "Data Exploration",
-    description:
-      "Experiments in turning raw information into clear, useful, and understandable visual stories.",
-    href: "/work",
-  },
-];
+const projects = (
+  await getCollection("work", ({ data }) => {
+    return data.featured && !data.draft;
+  })
+)
+  .sort(
+    (a, b) =>
+      b.data.publishedAt.getTime() - a.data.publishedAt.getTime(),
+  )
+  .slice(0, 3);
 ---
 
 <section
@@ -37,42 +25,46 @@ const projects = [
     linkHref="/work"
   />
 
-  <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-    {
-      projects.map((project) => (
-        <article
-          class="group flex min-h-72 flex-col rounded-card border border-slate-200 bg-surface p-6 transition duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-[var(--shadow-card)]"
-        >
-          <p class="font-code text-sm font-medium text-brand-600">
-            {project.category}
-          </p>
-
-          <div class="mt-auto pt-16">
-            <h3 class="font-heading text-xl font-semibold tracking-tight">
-              {project.title}
-            </h3>
-
-            <p class="mt-3 leading-7 text-foreground-muted">
-              {project.description}
+  {
+    projects.length > 0 ? (
+      <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {projects.map((project) => (
+          <article class="group flex min-h-72 flex-col rounded-card border border-slate-200 bg-surface p-6 transition duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-[var(--shadow-card)]">
+            <p class="font-code text-sm font-medium text-brand-600">
+              {project.data.category}
             </p>
 
-            <a
-              href={project.href}
-              class="mt-6 inline-flex items-center gap-2 font-medium text-foreground transition group-hover:text-brand-600"
-              aria-label={`View ${project.title}`}
-            >
-              View project
+            <div class="mt-auto pt-16">
+              <h3 class="font-heading text-xl font-semibold tracking-tight">
+                {project.data.title}
+              </h3>
 
-              <span
-                aria-hidden="true"
-                class="transition-transform group-hover:translate-x-1"
+              <p class="mt-3 leading-7 text-foreground-muted">
+                {project.data.description}
+              </p>
+
+              <a
+                href={`/work/${project.id}`}
+                class="mt-6 inline-flex items-center gap-2 font-medium text-foreground transition group-hover:text-brand-600"
+                aria-label={`View ${project.data.title}`}
               >
-                →
-              </span>
-            </a>
-          </div>
-        </article>
-      ))
-    }
-  </div>
+                View project
+
+                <span
+                  aria-hidden="true"
+                  class="transition-transform group-hover:translate-x-1"
+                >
+                  →
+                </span>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    ) : (
+      <p class="text-foreground-muted">
+        Featured projects will appear here soon.
+      </p>
+    )
+  }
 </section>
