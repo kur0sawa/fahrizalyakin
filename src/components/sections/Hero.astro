@@ -2,7 +2,10 @@
 import { hero } from "../../data/site";
 ---
 
-<section class="container flex min-h-[calc(100vh-8rem)] items-center py-20">
+<section
+  class="container flex items-center"
+  style="min-height: calc(100vh - var(--header-height)); padding-block: var(--section-padding-y);"
+>
   <div class="max-w-3xl">
     <p class="mb-5 font-code text-sm font-medium text-brand-600">
       {hero.greeting}
