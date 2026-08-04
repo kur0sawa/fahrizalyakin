@@ -66,9 +66,15 @@ const socialImageURL = new URL(image, Astro.site);
   </head>
 
   <body class="flex min-h-screen flex-col">
+    <a
+      href="#main-content"
+      class="sr-only fixed left-4 top-4 z-[100] rounded-lg bg-brand-600 px-4 py-3 font-medium text-white focus:not-sr-only"
+    >
+      Skip to main content
+    </a>
     <Navbar />
 
-    <main class="flex-1">
+    <main id="main-content" class="flex-1">
       <slot />
     </main>
 
