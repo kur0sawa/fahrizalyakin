@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHeader from "../components/ui/PageHeader.astro";
 
 const disciplines = [
   {
@@ -38,24 +39,11 @@ const tools = [
     class="container"
     style="padding-block: var(--section-padding-y);"
   >
-    <header class="max-w-3xl">
-      <p class="font-code text-sm font-medium text-brand-600">
-        About
-      </p>
-
-      <h1
-        class="mt-5 font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-5xl lg:text-6xl"
-      >
-        I enjoy turning ideas into clear and useful digital experiences.
-      </h1>
-
-      <p
-        class="mt-6 max-w-2xl text-lg leading-8 text-foreground-muted sm:text-xl"
-      >
-        I am Fahrizal Yakin, a designer and developer based in Indonesia,
-        currently deepening my understanding of data science.
-      </p>
-    </header>
+    <PageHeader
+      eyebrow="About"
+      title="I enjoy turning ideas into clear and useful digital experiences."
+      description="I am Fahrizal Yakin, a designer and developer based in Indonesia, currently deepening my understanding of data science."
+    />
 
     <div
       class="mt-16 grid gap-12 border-t border-[var(--color-border)] pt-12 lg:grid-cols-[1.35fr_0.65fr] lg:gap-20"

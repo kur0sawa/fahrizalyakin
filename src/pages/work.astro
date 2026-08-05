@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { ArrowRight } from "@lucide/astro";
+import PageHeader from "../components/ui/PageHeader.astro";
 
 const projects = (
   await getCollection("work", ({ data }) => !data.draft)
@@ -19,24 +20,11 @@ const projects = (
     class="container"
     style="padding-block: var(--section-padding-y);"
   >
-    <header class="max-w-3xl">
-      <p class="font-code text-sm font-medium text-brand-600">
-        Work
-      </p>
-
-      <h1
-        class="mt-5 font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-5xl lg:text-6xl"
-      >
-        Projects I have designed, built, and explored.
-      </h1>
-
-      <p
-        class="mt-6 max-w-2xl text-lg leading-8 text-foreground-muted sm:text-xl"
-      >
-        A collection of work across visual design, software development,
-        and data.
-      </p>
-    </header>
+    <PageHeader
+      eyebrow="Work"
+      title="Projects I have designed, built, and explored."
+      description="A collection of work across visual design, software development, and data."
+    />
 
     {
       projects.length > 0 ? (

@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { ArrowRight } from "@lucide/astro";
+import PageHeader from "../components/ui/PageHeader.astro";
 
 const articles = (
   await getCollection("journal", ({ data }) => !data.draft)
@@ -19,24 +20,11 @@ const articles = (
     class="container"
     style="padding-block: var(--section-padding-y);"
   >
-    <header class="max-w-3xl">
-      <p class="font-code text-sm font-medium text-brand-600">
-        Journal
-      </p>
-
-      <h1
-        class="mt-5 font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-5xl lg:text-6xl"
-      >
-        Notes from things I build, learn, and explore.
-      </h1>
-
-      <p
-        class="mt-6 max-w-2xl text-lg leading-8 text-foreground-muted sm:text-xl"
-      >
-        Writing about design, software development, data, and the process
-        behind the work.
-      </p>
-    </header>
+    <PageHeader
+      eyebrow="Journal"
+      title="Notes from things I build, learn, and explore."
+      description="Writing about design, software development, data, and the process behind the work."
+    />
 
     {
       articles.length > 0 ? (

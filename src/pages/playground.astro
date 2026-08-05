@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHeader from "../components/ui/PageHeader.astro";
 
 const experiments = [
   {
@@ -34,24 +35,11 @@ const experiments = [
     class="container"
     style="padding-block: var(--section-padding-y);"
   >
-    <header class="max-w-3xl">
-      <p class="font-code text-sm font-medium text-brand-600">
-        Playground
-      </p>
-
-      <h1
-        class="mt-5 font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-5xl lg:text-6xl"
-      >
-        Small experiments, unfinished ideas, and curious detours.
-      </h1>
-
-      <p
-        class="mt-6 max-w-2xl text-lg leading-8 text-foreground-muted sm:text-xl"
-      >
-        A space for visual studies, coding experiments, and data explorations
-        that do not need to become full projects.
-      </p>
-    </header>
+    <PageHeader
+      eyebrow="Playground"
+      title="Small experiments, unfinished ideas, and curious detours."
+      description="A space for visual studies, coding experiments, and data explorations that do not need to become full projects."
+    />
 
     <div class="mt-16 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
       {
