@@ -1,0 +1,76 @@
+---
+import { ArrowLeft, Home } from "@lucide/astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Page Not Found"
+  description="The page you are looking for could not be found."
+>
+  <section
+    class="container flex min-h-[70vh] items-center"
+    style="padding-block: var(--section-padding-y);"
+  >
+    <div class="max-w-2xl">
+      <p class="font-code text-sm font-medium text-brand-600">
+        Error 404
+      </p>
+
+      <h1
+        class="mt-5 font-heading text-5xl font-semibold leading-tight tracking-tight sm:text-6xl lg:text-7xl"
+      >
+        This page wandered off the map.
+      </h1>
+
+      <p class="mt-6 max-w-xl text-lg leading-8 text-foreground-muted sm:text-xl">
+        The link may be outdated, the page may have moved, or the URL may have
+        taken a wrong turn.
+      </p>
+
+      <div class="mt-10 flex flex-col gap-3 sm:flex-row">
+        <a
+          href="/"
+          class="group inline-flex items-center justify-center gap-2 rounded-lg bg-brand-600 px-5 py-3 font-medium text-white transition hover:bg-brand-700"
+        >
+          <Home
+            aria-hidden="true"
+            size={18}
+            stroke-width={2}
+          />
+
+          Back to homepage
+        </a>
+
+        <button
+          type="button"
+          data-go-back
+          class="group inline-flex items-center justify-center gap-2 rounded-lg border border-[var(--color-border)] px-5 py-3 font-medium text-foreground transition hover:bg-surface-muted"
+        >
+          <ArrowLeft
+            aria-hidden="true"
+            size={18}
+            stroke-width={2}
+            class="transition-transform duration-200 group-hover:-translate-x-1"
+          />
+
+          Go back
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const backButton = document.querySelector<HTMLButtonElement>(
+      "[data-go-back]",
+    );
+
+    backButton?.addEventListener("click", () => {
+      if (window.history.length > 1) {
+        window.history.back();
+        return;
+      }
+
+      window.location.href = "/";
+    });
+  </script>
+</BaseLayout>
