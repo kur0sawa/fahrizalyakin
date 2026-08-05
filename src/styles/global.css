@@ -2,9 +2,9 @@
 @import "./tokens.css";
 
 @theme {
-  --font-heading: "Sora", system-ui, sans-serif;
-  --font-body: "Inter", system-ui, sans-serif;
-  --font-code: "JetBrains Mono", monospace;
+  --font-heading: "Sora Variable", system-ui, sans-serif;
+  --font-body: "Inter Variable", system-ui, sans-serif;
+  --font-code: "JetBrains Mono Variable", monospace;
 
   --color-brand-50: #eff6ff;
   --color-brand-100: #dbeafe;
