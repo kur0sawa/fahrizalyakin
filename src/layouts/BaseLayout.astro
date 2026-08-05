@@ -14,6 +14,7 @@ interface Props {
   type?: "website" | "article";
   publishedAt?: Date;
   articleTags?: string[];
+  noindex?: boolean;
 }
 
 const {
@@ -23,6 +24,7 @@ const {
   type = "website",
   publishedAt,
   articleTags = [],
+  noindex = false,
 } = Astro.props;
 
 const pageTitle =
@@ -98,6 +100,10 @@ const articleSchema =
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <meta name="author" content={site.name} />
+    <meta
+      name="robots"
+      content={noindex ? "noindex, nofollow" : "index, follow"}
+    />
     <link rel="canonical" href={canonicalURL} />
 
     <meta property="og:type" content={type} />
