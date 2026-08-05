@@ -1,0 +1,32 @@
+---
+interface Props {
+  items: string[];
+  limit?: number;
+  class?: string;
+}
+
+const {
+  items,
+  limit,
+  class: className,
+} = Astro.props;
+
+const visibleItems =
+  typeof limit === "number"
+    ? items.slice(0, limit)
+    : items;
+---
+
+{
+  visibleItems.length > 0 && (
+    <ul class:list={["flex flex-wrap gap-2", className]}>
+      {visibleItems.map((item) => (
+        <li
+          class="rounded-full border border-[var(--color-border)] px-3 py-1.5 text-sm text-foreground-muted"
+        >
+          {item}
+        </li>
+      ))}
+    </ul>
+  )
+}

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHeader from "../components/ui/PageHeader.astro";
+import TagList from "../components/ui/TagList.astro";
 
 const disciplines = [
   {
@@ -85,15 +86,10 @@ const tools = [
         </h2>
 
         <ul class="mt-5 flex flex-wrap gap-2">
-          {
-            tools.map((tool) => (
-              <li
-                class="rounded-full border border-[var(--color-border)] px-3 py-1.5 text-sm text-foreground-muted"
-              >
-                {tool}
-              </li>
-            ))
-          }
+          <TagList
+            items={tools}
+            class="mt-5"
+          />
         </ul>
 
         <div class="mt-10 border-t border-[var(--color-border)] pt-8">

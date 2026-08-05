@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { ArrowRight } from "@lucide/astro";
 import PageHeader from "../components/ui/PageHeader.astro";
+import TagList from "../components/ui/TagList.astro";
 
 const articles = (
   await getCollection("journal", ({ data }) => !data.draft)
@@ -65,19 +66,11 @@ const articles = (
                     {article.data.description}
                   </p>
 
-                  {
-                    article.data.tags.length > 0 && (
-                      <ul class="mt-5 flex flex-wrap gap-2">
-                        {article.data.tags.slice(0, 4).map((tag) => (
-                          <li
-                            class="rounded-full border border-[var(--color-border)] px-3 py-1 text-sm text-foreground-muted"
-                          >
-                            {tag}
-                          </li>
-                        ))}
-                      </ul>
-                    )
-                  }
+                  <TagList
+                    items={article.data.tags}
+                    limit={4}
+                    class="mt-5"
+                  />
 
                   <a
                     href={`/journal/${article.id}`}

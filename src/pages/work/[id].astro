@@ -2,6 +2,7 @@
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { ArrowLeft } from "@lucide/astro";
+import TagList from "../../components/ui/TagList.astro";
 
 export async function getStaticPaths() {
   const projects = await getCollection("work", ({ data }) => !data.draft);
@@ -76,17 +77,10 @@ const formattedDate = project.data.publishedAt.toLocaleDateString("en-US", {
         {project.data.description}
       </p>
 
-      {
-        project.data.technologies.length > 0 && (
-          <ul class="mt-8 flex flex-wrap gap-2">
-            {project.data.technologies.map((technology) => (
-              <li class="rounded-full border border-[var(--color-border)] px-3 py-1.5 text-sm text-foreground-muted">
-                {technology}
-              </li>
-            ))}
-          </ul>
-        )
-      }
+      <TagList
+        items={project.data.technologies}
+        class="mt-8"
+      />
 
       {
         (project.data.projectUrl || project.data.repositoryUrl) && (

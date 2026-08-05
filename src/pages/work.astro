@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { ArrowRight } from "@lucide/astro";
 import PageHeader from "../components/ui/PageHeader.astro";
+import TagList from "../components/ui/TagList.astro";
 
 const projects = (
   await getCollection("work", ({ data }) => !data.draft)
@@ -66,17 +67,11 @@ const projects = (
                   {project.data.description}
                 </p>
 
-                {
-                  project.data.technologies.length > 0 && (
-                    <ul class="mt-6 flex flex-wrap gap-2">
-                      {project.data.technologies.slice(0, 4).map((technology) => (
-                        <li class="rounded-full border border-[var(--color-border)] px-3 py-1 text-sm text-foreground-muted">
-                          {technology}
-                        </li>
-                      ))}
-                    </ul>
-                  )
-                }
+                <TagList
+                  items={project.data.technologies}
+                  limit={4}
+                  class="mt-6"
+                />
 
                 <a
                   href={`/work/${project.id}`}
