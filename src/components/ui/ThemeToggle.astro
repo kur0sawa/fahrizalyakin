@@ -1,5 +1,6 @@
 ---
-import { Moon, Sun } from "@lucide/astro";
+import PhMoon from "../icons/PhMoon.astro";
+import PhSun from "../icons/PhSun.astro";
 ---
 
 <button
@@ -8,18 +9,16 @@ import { Moon, Sun } from "@lucide/astro";
   aria-label="Switch to dark mode"
   class="inline-flex size-10 items-center justify-center rounded-lg text-foreground-muted transition hover:bg-surface-muted hover:text-brand-600"
 >
-  <Moon
+  <PhMoon
     data-theme-dark-icon
     aria-hidden="true"
     size={20}
-    stroke-width={2}
   />
 
-  <Sun
+  <PhSun
     data-theme-light-icon
     aria-hidden="true"
     size={20}
-    stroke-width={2}
     class="hidden"
   />
 </button>

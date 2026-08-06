@@ -1,6 +1,7 @@
 ---
-import { Menu, X } from "@lucide/astro";
 import { navigation } from "../../config/navigation";
+import PhList from "../icons/PhList.astro";
+import PhX from "../icons/PhX.astro";
 import ThemeToggle from "../ui/ThemeToggle.astro";
 
 const currentPath = Astro.url.pathname;
@@ -70,18 +71,16 @@ const currentPath = Astro.url.pathname;
       aria-expanded="false"
       class="inline-flex size-10 items-center justify-center rounded-lg text-foreground transition hover:bg-surface-muted md:hidden"
     >
-      <Menu
+      <PhList
         data-menu-open-icon
         aria-hidden="true"
         size={22}
-        stroke-width={2}
       />
 
-      <X
+      <PhX
         data-menu-close-icon
         aria-hidden="true"
         size={22}
-        stroke-width={2}
         class="hidden"
       />
     </button>

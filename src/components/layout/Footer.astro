@@ -1,19 +1,18 @@
 ---
-import { Mail, Rss } from "@lucide/astro";
-import {
-  Github,
-  Instagram,
-} from "simple-icons-astro";
+import PhEnvelope from "../icons/PhEnvelope.astro";
+import PhGithubLogo from "../icons/PhGithubLogo.astro";
+import PhInstagramLogo from "../icons/PhInstagramLogo.astro";
+import PhRss from "../icons/PhRss.astro";
 
 import { socialLinks } from "../../config/social";
 
 const currentYear = new Date().getFullYear();
 
 const icons = {
-  github: Github,
-  instagram: Instagram,
-  mail: Mail,
-  rss: Rss,
+  github: PhGithubLogo,
+  instagram: PhInstagramLogo,
+  mail: PhEnvelope,
+  rss: PhRss,
 };
 ---
 
@@ -50,8 +49,7 @@ const icons = {
                 >
                   <Icon
                     aria-hidden="true"
-                    width={19}
-                    height={19}
+                    size={19}
                   />
                 </a>
               </li>

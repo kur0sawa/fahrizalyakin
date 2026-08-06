@@ -1,7 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { ArrowLeft } from "@lucide/astro";
+import PhArrowLeft from "../../components/icons/PhArrowLeft.astro";
 import TagList from "../../components/ui/TagList.astro";
 
 export async function getStaticPaths() {
@@ -47,10 +47,9 @@ const formattedDate = article.data.publishedAt.toLocaleDateString("en-US", {
         href="/journal"
         class="group inline-flex items-center gap-2 font-medium text-foreground-muted transition hover:text-brand-600"
       >
-        <ArrowLeft
+        <PhArrowLeft
           aria-hidden="true"
           size={18}
-          stroke-width={2}
           class="transition-transform group-hover:-translate-x-1"
         />
         All articles

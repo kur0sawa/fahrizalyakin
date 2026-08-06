@@ -1,5 +1,6 @@
 ---
-import { ArrowLeft, Home } from "@lucide/astro";
+import PhArrowLeft from "../components/icons/PhArrowLeft.astro";
+import PhHouse from "../components/icons/PhHouse.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
@@ -33,10 +34,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           href="/"
           class="group inline-flex items-center justify-center gap-2 rounded-lg bg-brand-600 px-5 py-3 font-medium text-white transition hover:bg-brand-700"
         >
-          <Home
+          <PhHouse
             aria-hidden="true"
             size={18}
-            stroke-width={2}
           />
 
           Back to homepage
@@ -47,10 +47,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           data-go-back
           class="group inline-flex items-center justify-center gap-2 rounded-lg border border-[var(--color-border)] px-5 py-3 font-medium text-foreground transition hover:bg-surface-muted"
         >
-          <ArrowLeft
+          <PhArrowLeft
             aria-hidden="true"
             size={18}
-            stroke-width={2}
             class="transition-transform duration-200 group-hover:-translate-x-1"
           />
 
